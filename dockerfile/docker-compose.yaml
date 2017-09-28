@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  activemq:
+    build: activemq
+    ports:
+      - "61616:61616"
+    command: sh /opt/activemq.sh
+  key-manager:
+    build: key-manager
+    ports:
+      - "9443:9443"
+      - "9763:9763"
+    links:
+      - "api-gateway:api-gateway"
+      - "activemq:activemq"
+      - "analytics:analytics"
+  analytics:
+    build: analytics
+    ports:
+      - "9091:9091"
+    links:
+      - "api-gateway:api-gateway"
+      - "activemq:activemq"
+  api-core:
+    build: api-core
+    ports:
+      - "9292:9292"
+    links: 
+      - "api-gateway:api-gateway"
+      - "key-manager:key-manager"
+      - "activemq:activemq"
+      - "analytics:analytics"
+  api-gateway:
+    build: api-gateway
+    ports:
+      - "9090:9090"

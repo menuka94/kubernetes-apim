@@ -16,7 +16,7 @@
 #
 # ------------------------------------------------------------------------
 
-FROM openjdk:8u111-jdk-alpine
+FROM openjdk:8u144-jdk-alpine
 MAINTAINER dev@wso2.org
 
 RUN apk update && \

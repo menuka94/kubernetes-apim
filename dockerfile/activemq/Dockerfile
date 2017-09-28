@@ -16,7 +16,7 @@
 #
 # ------------------------------------------------------------------------
 
-FROM openjdk:8u111-jdk-alpine
+FROM openjdk:8u144-jdk-alpine
 MAINTAINER dev@wso2.org
 
 WORKDIR /opt
@@ -24,7 +24,7 @@ WORKDIR /opt
 ADD apache-activemq-5.14.0-bin.tar.gz  .
 COPY activemq.sh .
 
-EXPOSE 61616
+# EXPOSE 61616
 
 RUN apk update && \
     addgroup -S wso2 && \
@@ -35,4 +35,4 @@ RUN apk update && \
 
 USER wso2
 
-CMD ["sh", "/opt/activemq.sh"]
+# CMD ["sh", "/opt/activemq.sh"]
